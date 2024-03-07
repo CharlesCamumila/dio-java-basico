@@ -1,11 +1,13 @@
 package edu.charles.java_basico;
 
+import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class ContaTerminal {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in).useLocale(Locale.ENGLISH);
+        DecimalFormat df = new DecimalFormat("#,###.00");
+        Scanner sc = new Scanner(System.in).useLocale(Locale.FRANCE);
         final String AGENCIA = "067-8";
         double saldo = 0;
 
@@ -37,7 +39,7 @@ public class ContaTerminal {
                 while (!valorDepositoValido) {
                     try {
                         System.out.print("Agora informe o valor do deposito de abertura: RS ");
-                        valorDeposito = Double.parseDouble(sc.nextLine());
+                        valorDeposito = sc.nextDouble();
                         valorDepositoValido = true;
                     } catch (NumberFormatException e) {
                         System.out.println("Erro: você deve digitar um número válido para o valor do deposito. \n");
@@ -46,7 +48,7 @@ public class ContaTerminal {
 
                 saldo += valorDeposito;
 
-                System.out.println(STR."Olá \{nomeUsuario}, obrigado por criar uma conta em nosso banco Charlitos, sua agência é \{AGENCIA}, conta \{numeroConta} e seu saldo R$ \{saldo} já está disponível para saque");
+                System.out.println(STR."Olá \{nomeUsuario}, obrigado por criar uma conta em nosso banco Charlitos, sua agência é \{AGENCIA}, conta \{numeroConta} e seu saldo R$ \{df.format(saldo)} já está disponível para saque");
 
             } else if (resposta.equalsIgnoreCase("s")) {
                 System.out.println("Area de login em manutenção.");
